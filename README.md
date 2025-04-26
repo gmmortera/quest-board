@@ -68,6 +68,7 @@ For a smoother development experience, you can use the `dev` script:
 
 ```bash
 pnpm dev
+```
 
    This will typically launch the application in your web browser at `http://localhost:[PORT_NUMBER]`.
 
@@ -80,16 +81,6 @@ Once the application is running, you'll find a user-friendly interface where you
 * **Favorite a Quest:** Click the star icon or a similar indicator next to a quest to mark it as a favorite.
 * **Edit a Quest:** Select a quest and look for an "Edit" or "Modify" option to change its details.
 * **Delete a Quest:** Find the "Delete" or "Remove" button associated with a quest to remove it from your log.
-
-## Contributing to the Legend
-
-Do you have ideas for new features, improvements, or bug fixes? We welcome contributions from fellow adventurers! Feel free to fork this repository and submit a pull request with your heroic additions.
-
-Please follow these guidelines when contributing:
-
-* Ensure your code adheres to the project's coding standards.
-* Write clear and concise commit messages.
-* Provide a detailed explanation of your changes in the pull request.
 
 ## License
 
