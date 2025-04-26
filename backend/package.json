@@ -1,26 +1,37 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is your modern hub for tracking quests, managing your heroic endeavors, and planning your next legendary feat. Whether you're a seasoned dungeon delver, a cunning rogue, or a wise mage, this application provides the tools you need to organize your quests with ease.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon --exec \"node --no-warnings --loader ts-node/esm\" src/index.ts"
+    "dev": "nodemon",
+    "clean": "rm -rf node_modules",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "@eslint/json": "^0.12.0",
     "@types/node": "^22.14.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0",
     "nodemon": "^3.0.3",
-    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.8.3"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0"
   },
   "dependencies": {
-    "fastify": "^4.29.0"
+    "@prisma/client": "^6.6.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^4.29.0",
+    "prisma": "^6.6.0"
   }
 }
