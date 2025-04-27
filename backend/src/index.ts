@@ -1,10 +1,10 @@
 import Fastify, { FastifyInstance } from "fastify"
-import prisma from "~/src/utils/prisma"
-import "dotenv/config"
-import routes from "./routes"
-import plugins from "./plugins"
 import cors from "@fastify/cors"
 import fastifyCookie from "@fastify/cookie"
+import routes from "./routes"
+import plugins from "./plugins"
+import prisma from "./utils/prisma"
+import "dotenv/config"
 
 const server: FastifyInstance = Fastify({
   logger: true

@@ -1,11 +1,11 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { userService } from "../services"
+import { SessionRequest } from "../dto/request/session"
 import "dotenv/config"
-import { SessionDtoRequest } from "../dto/request/session"
 
 export const createSessionHandler = async (
   request: FastifyRequest<{
-    Body: SessionDtoRequest
+    Body: SessionRequest
   }>,
   response: FastifyReply
 ) => {

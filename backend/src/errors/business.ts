@@ -1,4 +1,4 @@
-import { QBError, QBErrorResponse } from "./core"
+import { QBError } from "./core"
 
 export class EmailAlreadyExists extends QBError {
   constructor(email: string) {

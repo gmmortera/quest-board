@@ -1,8 +1,8 @@
+import { FastifyInstance } from "fastify"
 import users from "./user"
 import sessions from "./session"
 import quests from "./quest"
 import favorite from "./favorite"
-import { FastifyInstance } from "fastify"
 
 export default async (fastify: FastifyInstance) => {
   await fastify.register(users, { prefix: "/api/v1/users" })

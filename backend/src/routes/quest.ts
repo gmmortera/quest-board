@@ -5,6 +5,15 @@ import { UUIDParamsSchema } from "../utils/uuid"
 
 export default async (fastify: FastifyInstance) => {
   fastify.route({
+    method: "GET",
+    url: "/",
+    schema: {
+      querystring: CursorRequestSchema
+    },
+    handler: getQuestsHandler
+  })
+
+  fastify.route({
     method: "POST",
     url: "/",
     schema: {
@@ -20,14 +29,5 @@ export default async (fastify: FastifyInstance) => {
       params: UUIDParamsSchema
     },
     handler: destroyQuestHandler
-  })
-  
-  fastify.route({
-    method: "GET",
-    url: "/",
-    schema: {
-      querystring: CursorRequestSchema
-    },
-    handler: getQuestsHandler
   })
 }

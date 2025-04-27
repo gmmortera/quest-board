@@ -2,6 +2,11 @@ import prisma from "../utils/prisma"
 import { FavoriteRequest } from "../dto/request/favorite"
 
 const favoriteRepository = {
+  getAll: async () => {
+    const query = await prisma.favorite.findMany()
+
+    return query
+  },
   create: async (favoriteIds: FavoriteRequest) => {
     const query = await prisma.favorite.create({
       data: {
@@ -9,11 +14,6 @@ const favoriteRepository = {
         questId: favoriteIds.questId
       }
     })
-
-    return query
-  },
-  getAll: async () => {
-    const query = await prisma.favorite.findMany()
 
     return query
   },

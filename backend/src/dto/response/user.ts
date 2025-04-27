@@ -1,6 +1,6 @@
-import { Role, User } from "~/prisma"
+import { Role, User } from "../../../prisma"
 
-export class UserDtoResponse {
+export class UserResponse {
   id: string
   name: string
   role: Role

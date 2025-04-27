@@ -1,12 +1,21 @@
-import prisma from "~/src/utils/prisma"
-import { User } from "~/prisma"
-import { UserDtoResponse } from "~/src/dto/response/user"
-import { UserDtoRequest } from "~/src/dto/request/user"
+import { User } from "../../prisma"
+import { PrismaClientKnownRequestError } from "../../prisma/runtime/library"
+import { UserResponse } from "~/src/dto/response/user"
+import { UserRequest } from "~/src/dto/request/user"
 import { EmailAlreadyExists } from "../errors/business"
-import { PrismaClientKnownRequestError } from "~/prisma/runtime/library"
+import prisma from "../utils/prisma"
 
 const userRepository = {
-  create: async (user: UserDtoRequest) => {
+  getAll: async () => {
+    const query: User[] = await prisma.user.findMany()
+
+    const users = query.map((user) => {
+      return new UserResponse(user)
+    })
+
+    return users
+  },
+  create: async (user: UserRequest) => {
     const existingUser = await userRepository.doesExists(user.email)
 
     if (existingUser) {
@@ -21,16 +30,7 @@ const userRepository = {
       }
     })
 
-    return new UserDtoResponse(query)
-  },
-  getAll: async () => {
-    const query: User[] = await prisma.user.findMany()
-
-    const users = query.map((user) => {
-      return new UserDtoResponse(user)
-    })
-
-    return users
+    return new UserResponse(query)
   },
   doesExists: async (email: string) => {
     try {

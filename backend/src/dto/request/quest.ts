@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { Quest } from "~/prisma"
+import { Quest } from "../../../prisma"
 
 export const QuestRequestSchema = z.object({
   userId: z.string().uuid(),
@@ -14,7 +14,7 @@ export const CursorRequestSchema = z.object({
   limit: z.coerce.number()
 })
 
-export type QuestDtoRequest = z.infer<typeof QuestRequestSchema>
+export type QuestRequest = z.infer<typeof QuestRequestSchema>
 export type CursorRequest = z.infer<typeof CursorRequestSchema>
 
 export class CursorResponse {

@@ -2,13 +2,13 @@ import { favoriteRepository } from "../repositories"
 import { FavoriteRequest } from "../dto/request/favorite"
 
 const favoriteService = {
-  create: async (favoriteIds: FavoriteRequest) => {
-    const result = favoriteRepository.create(favoriteIds)
+  getAll: async () => {
+    const result = favoriteRepository.getAll()
 
     return result
   },
-  getAll: async () => {
-    const result = favoriteRepository.getAll()
+  create: async (favoriteIds: FavoriteRequest) => {
+    const result = favoriteRepository.create(favoriteIds)
 
     return result
   },

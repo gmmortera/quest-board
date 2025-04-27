@@ -1,17 +1,21 @@
-import { CursorRequest, CursorResponse, QuestDtoRequest } from "../dto/request/quest"
 import { questRepository } from "../repositories"
+import { 
+  CursorRequest,
+  CursorResponse,
+  QuestRequest
+} from "../dto/request/quest"
 import { UUID } from "../utils/uuid"
 
 const questService = {
-  create: async (quest: QuestDtoRequest) => {
+  getAll: async (request: CursorRequest) => {
+    const result = await questRepository.getAll(request)
+
+    return new CursorResponse(result, request)
+  },
+  create: async (quest: QuestRequest) => {
     const result = await questRepository.create(quest)
 
     return result
-  },
-  get: async (request: CursorRequest) => {
-    const result = await questRepository.get(request)
-
-    return new CursorResponse(result, request)
   },
   destroy: async (questId: UUID) => {
     const result = await questRepository.destroy(questId)

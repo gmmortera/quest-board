@@ -1,6 +1,6 @@
-import fastify, { FastifyInstance, FastifySchemaCompiler } from "fastify"
+import { FastifyInstance } from "fastify"
 import fp from "fastify-plugin"
-import { ZodError, ZodSchema } from "zod"
+import { ZodSchema } from "zod"
 
 export default fp(async (fastify: FastifyInstance) => {
   fastify.setValidatorCompiler(({ schema }) => {

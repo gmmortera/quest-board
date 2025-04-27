@@ -1,18 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { questService } from "../services"
-import { CursorRequest, QuestDtoRequest } from "../dto/request/quest"
+import { CursorRequest, QuestRequest } from "../dto/request/quest"
 import { UUIDParam } from "../utils/uuid"
 
-export const createQuestHandler = async (
-  request: FastifyRequest<{
-    Body: QuestDtoRequest
-  }>,
-  response: FastifyReply
-) => {
-  const quest = await questService.create(request.body)
-
-  response.code(201).send(quest)
-}
 
 export const getQuestsHandler = async (
   request: FastifyRequest<{
@@ -20,9 +10,20 @@ export const getQuestsHandler = async (
   }>,
   response: FastifyReply
 ) => {
-  const quests = await questService.get(request.query)
+  const quests = await questService.getAll(request.query)
 
   response.code(200).send(quests)
+}
+
+export const createQuestHandler = async (
+  request: FastifyRequest<{
+    Body: QuestRequest
+  }>,
+  response: FastifyReply
+) => {
+  const quest = await questService.create(request.body)
+
+  response.code(201).send(quest)
 }
 
 export const destroyQuestHandler = async (

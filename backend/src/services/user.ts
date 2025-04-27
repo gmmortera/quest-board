@@ -1,15 +1,15 @@
-import { UserDtoRequest } from "../dto/request/user"
-import { InvalidCredentials } from "../errors/business"
 import { userRepository } from "../repositories"
+import { UserRequest } from "../dto/request/user"
+import { InvalidCredentials } from "../errors/business"
 
 const userService = {
-  create: async (user: UserDtoRequest) => {
-    const result = await userRepository.create(user)
+  getAll: async () => {
+    const result = await userRepository.getAll()
 
     return result
   },
-  getAll: async () => {
-    const result = await userRepository.getAll()
+  create: async (user: UserRequest) => {
+    const result = await userRepository.create(user)
 
     return result
   },
