@@ -13,9 +13,9 @@ export default fp(async (fastify: FastifyInstance) => {
   })
 
   fastify.addHook("preHandler", async (req, res) => {
-    const path = req.routeOptions.url
-
-    if (path?.startsWith("/api/v1/session")) return
+    const sessionPath = req.routeOptions.url?.startsWith("/api/v1/session")
+    const userPath = req.routeOptions.url?.startsWith("/api/v1/users")
+    if (sessionPath || (userPath && req.method === "POST")) return
     await req.jwtVerify()
     req.user = req.user
   })
