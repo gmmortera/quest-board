@@ -1,6 +1,6 @@
-import { FastifyInstance } from "fastify";
-import { createSessionHandler, destroySessionHandler } from "../controllers/session";
-import { SessionRequestSchema } from "../dto/request/session";
+import { FastifyInstance } from "fastify"
+import { createSessionHandler, destroySessionHandler } from "../controllers/session"
+import { SessionRequestSchema } from "../dto/request/session"
 
 export default async (fastify: FastifyInstance) => {
   fastify.route({

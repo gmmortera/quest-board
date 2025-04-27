@@ -20,16 +20,12 @@ export const createSessionHandler = async (
   
   response.setCookie("token", token)
 
-  response.code(200).send({
-    message: "Logged in successfully!!"
-  })
+  response.code(200).send()
 }
 
 export const destroySessionHandler = async (
   request: FastifyRequest,
   response: FastifyReply
 ) => {
-  response.code(200).send({
-    message: "Logged out successfully!"
-  })
+  response.code(204).send()
 }
