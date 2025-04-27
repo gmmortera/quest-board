@@ -3,6 +3,7 @@ import { User } from "~/prisma"
 import { UserDtoResponse } from "~/src/dto/response/user"
 import { UserDtoRequest } from "~/src/dto/request/user"
 import { EmailAlreadyExists } from "../errors/business"
+import { PrismaClientKnownRequestError } from "~/prisma/runtime/library"
 
 const userRepository = {
   create: async (user: UserDtoRequest) => {
@@ -32,13 +33,19 @@ const userRepository = {
     return users
   },
   doesExists: async (email: string) => {
-    const query = await prisma.user.findFirstOrThrow({
-      where: {
-        email
+    try {
+      const query = await prisma.user.findFirstOrThrow({
+        where: {
+          email
+        }
+      })
+  
+      return query
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        return false
       }
-    })
-
-    return query
+    }
   }
 }
 
