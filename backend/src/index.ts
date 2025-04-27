@@ -1,10 +1,23 @@
 import Fastify, { FastifyInstance } from "fastify"
 import prisma from "~/src/utils/prisma"
 import "dotenv/config"
+import routes from "./routes"
+import plugins from "./plugins"
+import cors from "@fastify/cors"
+import fastifyCookie from "@fastify/cookie"
 
 const server: FastifyInstance = Fastify({
   logger: true
 })
+
+server.register(cors, {
+  origin: process.env.CLIENT_URL,
+  credentials: true
+})
+
+server.register(fastifyCookie)
+server.register(plugins)
+server.register(routes)
 
 server.get("/", async (request, reply) => {
   return { greetings: "Hello, World!" }
