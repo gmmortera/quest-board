@@ -9,6 +9,7 @@ export default fp(async (fastify: FastifyInstance) => {
       response.code(400).send({
         errorCode: "VALIDATION_ERROR",
         message: "The server cannot or will not process the request due to malformed syntax.",
+        issues: error.issues,
         path: request.routeOptions.url
       })
     }
@@ -32,6 +33,10 @@ export default fp(async (fastify: FastifyInstance) => {
         })
       }
     }
+
+    response.code(500).send({
+      error
+    })
   })
 }, {
 
