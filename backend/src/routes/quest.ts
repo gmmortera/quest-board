@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify"
 import { createQuestHandler, destroyQuestHandler, getQuestsHandler } from "../controllers/quest"
 import { CursorRequestSchema, QuestRequestSchema } from "../dto/request/quest"
 import { UUIDParamsSchema } from "../utils/uuid"
+import rbac from "../utils/rbac"
 
 export default async (fastify: FastifyInstance) => {
   fastify.route({
@@ -19,6 +20,7 @@ export default async (fastify: FastifyInstance) => {
     schema: {
       body: QuestRequestSchema
     },
+    preHandler: [rbac],
     handler: createQuestHandler
   })
 
@@ -28,6 +30,7 @@ export default async (fastify: FastifyInstance) => {
     schema: {
       params: UUIDParamsSchema
     },
+    preHandler: [rbac],
     handler: destroyQuestHandler
   })
 }

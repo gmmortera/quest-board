@@ -13,7 +13,8 @@ export const createSessionHandler = async (
 
   const payload = {
     id: user.id,
-    email: user.email
+    email: user.email,
+    role: user.role
   }
 
   const token = await response.jwtSign(payload)
